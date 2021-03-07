@@ -15,14 +15,14 @@ A basic example would look like this:
 
 ```ruby
 html = Hypertext.new do |h|
-  h.tag :div, class: "greeting" do |h|
-    h.tag :h1 do |h|
+  h.tag :div, class: "greeting" do
+    h.tag :h1 do
       h.text "hello world"
     end
 
     h.tag :hr
 
-    h.tag :p do |h|
+    h.tag :p do
       h.text "nice to meet you"
     end
   end

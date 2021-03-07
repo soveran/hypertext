@@ -51,20 +51,24 @@ class Hypertext
     end
   end
 
-  def tag(name, attributes = {}, &block)
+  def tag(name, attributes = {})
     atts = compile(attributes)
 
     if block_given?
-      @dom.push "<#{name}#{atts}>"
-      @dom.push yield(self.class.new).to_a
-      @dom.push "</#{name}>"
+      @dom << "<#{name}#{atts}>"
+
+      original, @dom = @dom, []
+      yield
+      @dom = original << @dom
+
+      @dom << "</#{name}>"
     else
-      @dom.push "<#{name}#{atts} />"
+      @dom << "<#{name}#{atts} />"
     end
   end
 
   def text(value)
-    @dom.push(escape(value))
+    @dom << escape(value)
   end
 
   def to_a
