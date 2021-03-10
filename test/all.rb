@@ -73,3 +73,19 @@ scope "Hypertext" do
     assert_equal expected, ht.to_s("....")
   end
 end
+
+scope "Hypertext::DSL" do
+  test do
+    expected = "<head>\n  <title>\n    hello world\n  </title>\n</head>\n"
+
+    ht = Hypertext::DSL.new do
+      head do
+        title do
+          text "hello world"
+        end
+      end
+    end
+
+    assert_equal expected, ht.to_s
+  end
+end

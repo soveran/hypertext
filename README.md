@@ -41,6 +41,34 @@ puts html.to_s
 # </div>
 ```
 
+DSL
+---
+
+As an experimental feature, Hypertext provides a DSL for
+describing an HTML document in a way that resembles
+[Markaby](https://github.com/markaby/markaby).
+
+```ruby
+require "hypertext"
+require "hypertext/dsl"
+
+person_name = "Foo Bar"
+
+html = Hypertext::DSL.new do
+  form action: "/", method: "post" do
+    input name: "person[name]", value: person_name
+    input type: "submit"
+  end
+end
+
+puts html.to_s
+
+# <form action="/" method="post">
+#   <input name="person[name]" value="Foo Bar" />
+#   <input type="submit" />
+# </form>
+```
+
 Installation
 ------------
 
