@@ -15,7 +15,7 @@ A basic example would look like this:
 
 ```ruby
 html = Hypertext.new do |h|
-  h.tag :div, class: "greeting" do
+  h.tag :div, "data-index-number" => 123, class: "greeting" do
     h.tag :h1 do
       h.text "hello world"
     end
@@ -30,7 +30,7 @@ end
 
 puts html.to_s
 
-# <div class="greeting">
+# <div data-index-number="123" class="greeting">
 #   <h1>
 #     hello world
 #   </h1>
