@@ -49,8 +49,16 @@ class Hypertext
       end
     end
 
+    def append(content)
+      @ht.append(content)
+    end
+
     def text(content)
       @ht.text(content)
+    end
+
+    def to_a
+      @ht.to_a
     end
 
     def to_s

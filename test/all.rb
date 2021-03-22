@@ -1,4 +1,13 @@
 scope "Hypertext" do
+  test "append" do
+    expected = "hello &rarr; world\n"
+
+    ht = Hypertext.new
+    ht.append "hello &rarr; world"
+
+    assert_equal expected, ht.to_s
+  end
+
   test "text" do
     expected = "hello world\n"
 

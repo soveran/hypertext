@@ -53,24 +53,28 @@ class Hypertext
     end
   end
 
+  def append(value)
+    @dom.push(*value)
+  end
+
   def tag(name, attributes = {})
     atts = compile(attributes)
 
     if block_given?
-      @dom << "<#{name}#{atts}>"
+      append("<#{name}#{atts}>")
 
       original, @dom = @dom, []
       yield
       @dom = original << @dom
 
-      @dom << "</#{name}>"
+      append("</#{name}>")
     else
-      @dom << "<#{name}#{atts} />"
+      append("<#{name}#{atts} />")
     end
   end
 
   def text(value)
-    @dom << escape(value)
+    append(escape(value))
   end
 
   def to_a
