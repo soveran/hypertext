@@ -30,11 +30,13 @@ class Hypertext
   }
 
   def self.render(array, indent = "  ", level = 0)
+    indentation = indent * level
+
     array.map do |element|
       if Array === element
         render(element, indent, level + 1)
       else
-        sprintf "%s%s\n", indent * level, element
+        sprintf "%s%s\n", indentation, element
       end
     end.join
   end
